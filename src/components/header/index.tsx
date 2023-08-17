@@ -1,12 +1,27 @@
-function Header() {
-  const sunIcon = './src/images/icon-sun.svg';
-  const moonIcon = './src/images/icon-moon.svg';
+import styles from './header.module.css';
+
+type HeaderProps = {
+  darkMode: boolean,
+  setDarkMode: (arg: boolean) => void,
+}
+
+function Header({ darkMode, setDarkMode }: HeaderProps) {
+  const sunIcon = './src/assets/images/icon-sun.svg';
+  const moonIcon = './src/assets/images/icon-moon.svg';
+
+  const backgroundImage = darkMode ?
+    `${styles.header} ${styles.dark}` : `${styles.header} ${styles.light}`;
 
   return(
-    <header>
+    <header className={ backgroundImage }>
       <h1>TODO</h1>
-      <button>
-        <img src={ sunIcon } alt="Toggle Theme Button" />
+      <button
+        onClick={ () => setDarkMode(!darkMode) }
+      >
+        <img
+          src={ darkMode ? sunIcon : moonIcon }
+          alt="Toggle Theme Button"
+        />
       </button>
     </header>
   );

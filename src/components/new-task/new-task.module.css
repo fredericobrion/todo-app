@@ -1,0 +1,51 @@
+.form {
+  display: flex;
+  justify-content: center;
+}
+
+.form input {
+  border: none;
+  height: 2rem;
+  width: 28rem;
+}
+
+.darkMode {
+  background-color: var(--very-dark-desaturated-blue);
+}
+
+.lightMode {
+  background-color: var(--very-light-gray);
+}
+
+.notCompletedDark {
+  color: var(--light-grayish-blue-dark);
+}
+
+.completedDark {
+  color: var(--very-dark-grayish-blue);
+  text-decoration: line-through;
+}
+
+.notCompletedLight {
+  color: var(--very-dark-grayish-blue-light);
+}
+
+.completedLight {
+  color: var(--light-grayish-blue);
+  text-decoration: line-through;
+}
+
+.container button {
+  border-radius: 50%;
+  border-color: linear-gradient hsl(192, 100%, 67%) to hsl(280, 87%, 65%);
+  height: 1.5rem;
+  width: 1.5rem;
+}
+
+.completedButtonDark {
+  background-color: var(--very-dark-desaturated-blue);
+}
+
+.completedButtonLigh {
+  background-color: var(--very-light-gray);
+}
