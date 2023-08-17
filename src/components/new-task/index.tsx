@@ -15,33 +15,59 @@ function NewTask({ darkMode, taskList, setTaskList }: NewTaskProps) {
 
   const handleAddTask = (e: React.FormEvent<HTMLFormElement>) => {
       e.preventDefault();
-      setTaskList([...taskList, {
-        name: newTask,
-        completed,
-        id: nanoid(),
-      }])
-      setNewTask('');
+      if (newTask !== '') {
+        setTaskList([...taskList, {
+          name: newTask,
+          completed,
+          id: nanoid(),
+        }])
+        setNewTask('');
+      }
+  }
+
+  const containerClass = darkMode
+    ? `${styles.container} ${styles.darkMode}`
+    : `${styles.container} ${styles.lightMode}`; 
+
+  const setClassBtn = () => {
+    if (darkMode) {
+      return completed
+        ? `${styles.darkMode} ${styles.completedBtn}`
+        : styles.darkMode;
+    }
+    return completed
+        ? `${styles.lightMode} ${styles.completedBtn}`
+        : styles.lightMode;
+  }
+
+  const setClassChecked = () => {
+    if (completed) {
+      return styles.completedCheck;
+    }
+    return darkMode ? styles.darkMode : styles.lightMode;
   }
 
   const setClassInput = () => {
     if (darkMode) {
       return completed
         ? `${styles.darkMode} ${styles.completedDark}`
-        : `${styles.darkMode} ${styles.notCompletedDark}`
+        : `${styles.darkMode} ${styles.notCompletedDark}`;
     }
     return completed
       ? `${styles.lightMode} ${styles.completedLight}`
-      : `${styles.lightMode} ${styles.notCompletedLight}`
+      : `${styles.lightMode} ${styles.notCompletedLight}`;
   };
 
   return (
-    <div className={ styles.container }>
-      <button
-        onClick={ () => setCompleted(!completed) }
-        className={ darkMode ? styles.completedButtonDark : styles.completedButtonLight }
-      >
-        <span>&#10003;</span>
-      </button>
+    <div className={ containerClass }>
+      <div className={ styles.btnContainer }>
+        <button
+          onClick={ () => setCompleted(!completed) }
+          className={ setClassBtn() }
+        >
+          <span className={ setClassChecked() }>&#10003;</span>
+        </button>
+      </div>
       <form className={ styles.form } onSubmit={ handleAddTask }>
         <input
           className={ setClassInput() }
